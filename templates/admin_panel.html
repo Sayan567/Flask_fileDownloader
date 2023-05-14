@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+  <title>Admin Panel</title>
+
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="file" accept=".csv,.xlsx">
+  <button type="submit">Upload</button>
+</form>
+
+<table>
+  <tr>
+    <th>S.No</th>
+    <th>File</th>
+    <th>Action</th>
+  </tr>
+  {% for file in files %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ file }}</td>
+    <td>
+      <a href="{{ url_for('download_file', filename=file) }}">Download</a> |
+      <a href="{{ url_for('read_file', filename=file) }}">Open</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html> 
+
+
+
